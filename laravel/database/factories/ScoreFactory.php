@@ -7,7 +7,9 @@
  */
 use Faker\Generator as Faker;
 
-$student_ids = \App\Models\Student::all()->pluck('id');
+$student_ids = \App\Models\Student::all()->pluck('name');
+
+
 $factory->define(\App\Models\Score::class, function (Faker $faker)use ($student_ids) {
     return [
         'student' => $faker->randomElement($student_ids),

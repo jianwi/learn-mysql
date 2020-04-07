@@ -12,6 +12,6 @@ class ScoreSeeder extends Seeder
     public function run()
     {
         //
-        factory(\App\Models\Score::class,50)->create();
+        factory(\App\Models\Score::class,30)->create();
     }
 }
