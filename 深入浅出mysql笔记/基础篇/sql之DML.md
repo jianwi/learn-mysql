@@ -70,5 +70,53 @@ SELECT  student,avg(score) FROM student GROUP BY student
 SELECT subject,avg(score) FROM student GROUP BY subject
 ```
 
-查询结果
+ ####  having 和 where 的区别
+
+having 是过滤聚合函数处理后的结果，而where是过滤聚合函数处理后的结果
+
+1. 求学生 所有单科大于10分的成绩之和，且只显示成绩之和小于100的。
+
+   ```mysql
+   SELECT
+   	student 学生,
+   	SUM( score ) 最高成绩 
+   FROM
+   	scores 
+   WHERE
+   	score > 10 
+   GROUP BY
+   	student 
+   HAVING
+   	最高成绩 < 100
+   ```
+
+   结果
+
+   ![1586252088427](assets/1586252088427.png)
+
+#### WITH ROLLUP 用法
+
+with roolup 会显示总的结果，比如求学生的所有成绩之和：
+
+```mysql
+SELECT
+	student 学生,
+	SUM( score ) 成绩之和 
+FROM
+	scores 
+GROUP BY
+	student WITH ROLLUP
+```
+
+
+
+![1586252358194](assets/1586252358194.png)
+
+null 对应的即为所有成绩之和
+
+类似的，如果求最高成绩，那么null对应的就是表里最高的成绩
+
+### 表连接
+
+1. left join : 以左边表的数据为准，如果左边表有的数据，右边没有 ，那么就显示null，
 
